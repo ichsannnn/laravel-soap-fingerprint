@@ -1,0 +1,36 @@
+html,
+body {
+    height: 100%;
+}
+html {
+    display: table;
+    margin: auto;
+}
+body {
+    display: table-cell;
+    vertical-align: middle;
+}
+.error-page {
+  margin-top: -50px;
+}
+.error-text-form {
+  width: 450px;
+  margin: auto;
+}
+.error-text {
+  font-weight: 600;
+  font-size: 165px;
+}
+.error-text-2 {
+  margin-top: -40px;
+  font-size: 16px;
+}
+.icon-notfound {
+  font-size: 131px;
+}
+.icon-notfound-2 {
+  font-size: 140px;
+}
+.button-notfound {
+  margin-top: 20px;
+}

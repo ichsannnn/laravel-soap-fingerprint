@@ -38,6 +38,13 @@
               {{-- <input id="port" type="text" name="port" value="{{ $data->port }}"> --}}
               {{-- <label for="port">Port</label> --}}
             {{-- </div> --}}
+            <div class="input-field col s12 m12 l12">
+              <select name="status" id="status">
+                <option selected disabled>Status</option>
+                <option value="1" @if ($data->status == 1) selected @endif>Aktif</option>
+                <option value="0" @if ($data->status == 0) selected @endif>Tidak Aktif</option>
+              </select>
+            </div>
           </div>
           <div class="row right">
             <button class="btn waves-effect waves-light cyan" id="btn_create">Ubah</button>
@@ -59,6 +66,7 @@
         }
       }
     });
+    $('select').material_select();
   });
   </script>
 @endsection

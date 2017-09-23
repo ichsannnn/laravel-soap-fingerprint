@@ -50,4 +50,19 @@ class FPController extends Controller
       FP::find($id)->delete();
       return redirect()->route('fingerprint_index');
     }
+
+    public function check_connection($id)
+    {
+      $mesin = FP::find($id);
+      $ip = $mesin->ip;
+      // $port = $mesin->port;
+
+      $connect = @fsockopen($IP, '80', $errno, $errstr, 1);
+      // $connect = @fsockopen($IP, $port, $errno, $errstr, 1);
+      if ($connect) {
+        return "Mesin terkoneksi! <br> <a href='" . route('fingerprint_index') . "'>Kembali</a>";
+      } else {
+        return "Mesin tidak terkoneksi! <br> <a href='" . route('fingerprint_index') . "'>Kembali</a>";
+      }
+    }
 }

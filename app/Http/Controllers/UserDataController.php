@@ -39,7 +39,7 @@ class UserDataController extends Controller
 
     public function sinkronisasi()
     {
-      $fp = FP::orderBy('ip')->get();
+      $fp = FP::where('status', 1)->orderBy('ip')->get();
 
       if (count($fp) == 0) {
         return "tidak ada mesin absensi!";

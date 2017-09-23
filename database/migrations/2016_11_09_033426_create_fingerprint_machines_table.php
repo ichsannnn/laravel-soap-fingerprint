@@ -18,6 +18,7 @@ class CreateFingerprintMachinesTable extends Migration
             $table->string('ip');
             // $table->string('port')->nullable();
             $table->string('comkey');
+            $table->integer('status');
             $table->timestamps();
         });
     }

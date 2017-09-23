@@ -24,6 +24,7 @@ class FPController extends Controller
       $fp->ip = $r->input('ip');
       $fp->comkey = $r->input('comkey');
       // $fp->port = $r->input('port');
+      $fp->status = $r->input('status');
       $fp->save();
       return redirect()->route('fingerprint_index');
     }
@@ -41,6 +42,7 @@ class FPController extends Controller
       $fp->ip = $r->input('ip');
       $fp->comkey = $r->input('comkey');
       // $fp->port = $r->input('port');
+      $fp->status = $r->input('status');
       $fp->save();
       return redirect()->route('fingerprint_index');
     }

@@ -37,6 +37,13 @@
               {{-- <input id="port" type="text" name="port"> --}}
               {{-- <label for="port">Port</label> --}}
             {{-- </div> --}}
+            <div class="input-field col s12 m12 l12">
+              <select name="status" id="status">
+                <option selected disabled>Status</option>
+                <option value="1">Aktif</option>
+                <option value="0">Tidak Aktif</option>
+              </select>
+            </div>
           </div>
           <div class="row right">
             <button class="btn waves-effect waves-light cyan" id="btn_create">Simpan</button>
@@ -58,6 +65,7 @@
         }
       }
     });
+    $('select').material_select();
   });
   </script>
 @endsection

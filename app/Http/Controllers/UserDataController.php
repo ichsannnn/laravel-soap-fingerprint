@@ -149,17 +149,22 @@ class UserDataController extends Controller
         }
         //Lopping di luar for
         //Langsung ke array $create, hapus UD::insert
-        // foreach (array_chunk($create, 5) as $chunk_value) {
-        //   foreach ($chunk_value as $value) {
-        //     $model = new Model;
-        //     $model->field = $value->array_name;
-        //     $model->field = $value->array_name;
-        //     $model->field = $value->array_name;
-        //     $model->save();
-        //   }
-        // }
+         foreach (array_chunk($create, 5) as $key => $chunk_value) {
+	//	echo ($key + 1) . '. ';
+           foreach ($chunk_value as $value) {
+             $absen = new UD;
+             $absen->user_id = $value["user_id"];
+             $absen->datetime = $value["datetime"];
+             $absen->machine_id = $value["machine_id"];
+		$absen->created_at = $value["created_at"];
+             $absen->save();
+//		echo $value["user_id"] . '<br>';
+	//	echo json_encode($value) . '<br>';
+           }
+	//	echo '<br>';
+         }
 
-        echo count($create) . '<br>';
+        //echo count($create) . '<br>';
 
         // UD::insert($create);
       }

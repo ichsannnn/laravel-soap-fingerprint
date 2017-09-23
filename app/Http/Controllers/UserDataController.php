@@ -8,6 +8,11 @@ use App\UserData as UD;
 
 class UserDataController extends Controller
 {
+    public function __construct()
+    {
+      ini_set('max_execution_time', 0);
+    }
+
     public function _ParseData($data, $p1, $p2)
     {
       $data = " ".$data;

@@ -15,6 +15,26 @@ class UserDataController extends Controller
 
     public function _ParseData($data, $p1, $p2)
     {
+
+      "HTTP\/1.0 200 OK\r\n
+      Server: ZK Web Server\r\n
+      Pragma: no-cache\r\n
+      Cache-control: no-cache\r\n
+      Content-Type: text\/xml\r\n
+      Connection: close\r\n\r\n\r\n\r\n
+      1<\/PIN>2017-02-08 11:37:35<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>\r\n
+      2<\/PIN>2017-02-08 13:11:17<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>\r\n
+      2<\/PIN>2017-02-08 13:11:19<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>\r\n
+      2<\/PIN>2017-02-08 13:11:21<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>\r\n
+      1<\/PIN>2017-02-06 16:21:23<\/DateTime>0<\/Verified>4<\/Status>0<\/WorkCode><\/Row>\r\n
+      1<\/PIN>2017-02-06 16:23:38<\/DateTime>0<\/Verified>2<\/Status>0<\/WorkCode><\/Row>\r\n
+      11065<\/PIN>2017-02-07 05:43:55<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>\r\n
+      11078<\/PIN>2017-02-07 06:12:07<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>\r\n
+      11061<\/PIN>2017-02-07"
+
+      $data      = $this->_ParseData($buffer[$a], "<Row>", "</Row>");
+      $pin       = $this->_ParseData($data, "<PIN>", "</PIN>");
+
       $data = " ".$data;
       $hasil = "";
       $awal = strpos($data, $p1);
@@ -68,7 +88,8 @@ class UserDataController extends Controller
         $connect = @fsockopen($IP, '80', $errno, $errstr, 1);
         // $connect = @fsockopen($IP, $Port, $errno, $errstr, 1);
         if($connect) {
-          $soapRequest = "<GetAttLog><ArgComKey xsi:type=\"xsd:integer\">".$Key."</ArgComKey><Arg><PIN xsi:type=\"xsd:integer\">All</PIN></Arg></GetAttLog>";
+          $soapRequest = "<GetAttLog><ArgComKey xsi:type=\"xsd:integer\">".
+                          $Key."</ArgComKey><Arg><PIN xsi:type=\"xsd:integer\">All</PIN></Arg></GetAttLog>";
           $newLine = "\r\n";
           fputs($connect, "POST /iWsService HTTP/1.0".$newLine);
           fputs($connect, "Content-Type: text/xml".$newLine);
@@ -87,9 +108,33 @@ class UserDataController extends Controller
 
         $create = [];
         for ($a=1; $a < count($buffer); $a++) {
+          // echo $buffer[a] disini, hasilnya: "11078<\/PIN>2017-02-07 06:12:07<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>"
           $data      = $this->_ParseData($buffer[$a], "<Row>", "</Row>");
+          // echo $buffer[a] disini, hasilnya: "11078<\/PIN>2017-02-07 06:12:07<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>"
+          // echo $data disini, hasilnya: "11078<\/PIN>2017-02-07 06:12:07<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode>"
           $pin       = $this->_ParseData($data, "<PIN>", "</PIN>");
+          // echo $buffer[a] disini, hasilnya: "11078<\/PIN>2017-02-07 06:12:07<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>"
+          // echo $data disini, hasilnya: "11078<\/PIN>2017-02-07 06:12:07<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode>"
+          // echo $pin disini, hasilnya: "11078"
           $datetime  = $this->_ParseData($data, "<DateTime>", "</DateTime>");
+          // echo $buffer[a] disini, hasilnya: "11078<\/PIN>2017-02-07 06:12:07<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>"
+          // echo $data disini, hasilnya: "11078<\/PIN>2017-02-07 06:12:07<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode>"
+          // echo $pin disini, hasilnya: "11078"
+          // echo $datetime disini, hasilnya: "2017-02-07 06:12:07"
+          //
+          //
+          // pake json encode
+          // ini $buffer: "11078<\/PIN>2017-02-07 06:12:07<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>"
+          // ini $data: "11078<\/PIN>2017-02-07 06:12:07<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode>"
+          // ini $pin: "11078"
+          // ini $datetime: "2017-02-07 06:12:07"
+          //
+          // gapake json encode
+          // ini $buffer: 110782017-02-07 06:12:07000
+          // ini $data: 110782017-02-07 06:12:07000
+          // ini $pin: 11078
+          // ini $datetime: 2017-02-07 06:12:07
+
 
           if ($data != "") {
             if (!count($this->_checkExists($pin, $datetime)) > 0) {
@@ -102,8 +147,21 @@ class UserDataController extends Controller
             }
           }
         }
+        //Lopping di luar for
+        //Langsung ke array $create, hapus UD::insert
+        // foreach (array_chunk($create, 5) as $chunk_value) {
+        //   foreach ($chunk_value as $value) {
+        //     $model = new Model;
+        //     $model->field = $value->array_name;
+        //     $model->field = $value->array_name;
+        //     $model->field = $value->array_name;
+        //     $model->save();
+        //   }
+        // }
 
-        UD::insert($create);
+        echo count($create) . '<br>';
+
+        // UD::insert($create);
       }
       return redirect()->route('index');
     }

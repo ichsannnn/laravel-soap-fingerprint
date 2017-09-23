@@ -59,7 +59,7 @@ class UserDataController extends Controller
         // if ($Port == "") {
         //   $Key = $value->port;
         // }
-        
+
         $connect = @fsockopen($IP, '80', $errno, $errstr, 1);
         // $connect = @fsockopen($IP, $Port, $errno, $errstr, 1);
         if($connect) {
@@ -91,7 +91,7 @@ class UserDataController extends Controller
               $create[] = [
                 'user_id' => $pin,
                 'datetime' => $datetime,
-                'machine_id' => $fp->id,
+                'machine_id' => $value->id,
                 'created_at' => $datetime
               ];
             }

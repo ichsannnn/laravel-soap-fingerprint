@@ -23,4 +23,6 @@ Route::group(['prefix' => 'fingerprint'], function() {
   Route::post('update', 'FPController@update')->name('fingerprint_update');
   Route::get('{id}/delete', 'FPController@delete')->name('fingerprint_delete');
   Route::get('{id}/check-connection', 'FPController@check_connection')->name('fingerprint_check_connection');
+  Route::get('{id}/active', 'FPController@active')->name('fingerprint_active');
+  Route::get('{id}/deactive', 'FPController@deactive')->name('fingerprint_deactive');
 });

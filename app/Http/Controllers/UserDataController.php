@@ -147,8 +147,21 @@ class UserDataController extends Controller
             }
           }
         }
+        //Lopping di luar for
+        //Langsung ke array $create, hapus UD::insert
+        // foreach (array_chunk($create, 5) as $chunk_value) {
+        //   foreach ($chunk_value as $value) {
+        //     $model = new Model;
+        //     $model->field = $value->array_name;
+        //     $model->field = $value->array_name;
+        //     $model->field = $value->array_name;
+        //     $model->save();
+        //   }
+        // }
 
-        UD::insert($create);
+        echo count($create) . '<br>';
+
+        // UD::insert($create);
       }
       return redirect()->route('index');
     }

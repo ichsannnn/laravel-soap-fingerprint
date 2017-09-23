@@ -16,24 +16,24 @@ class UserDataController extends Controller
     public function _ParseData($data, $p1, $p2)
     {
 
-      "HTTP\/1.0 200 OK\r\n
-      Server: ZK Web Server\r\n
-      Pragma: no-cache\r\n
-      Cache-control: no-cache\r\n
-      Content-Type: text\/xml\r\n
-      Connection: close\r\n\r\n\r\n\r\n
-      1<\/PIN>2017-02-08 11:37:35<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>\r\n
-      2<\/PIN>2017-02-08 13:11:17<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>\r\n
-      2<\/PIN>2017-02-08 13:11:19<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>\r\n
-      2<\/PIN>2017-02-08 13:11:21<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>\r\n
-      1<\/PIN>2017-02-06 16:21:23<\/DateTime>0<\/Verified>4<\/Status>0<\/WorkCode><\/Row>\r\n
-      1<\/PIN>2017-02-06 16:23:38<\/DateTime>0<\/Verified>2<\/Status>0<\/WorkCode><\/Row>\r\n
-      11065<\/PIN>2017-02-07 05:43:55<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>\r\n
-      11078<\/PIN>2017-02-07 06:12:07<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>\r\n
-      11061<\/PIN>2017-02-07"
+      // "HTTP\/1.0 200 OK\r\n
+      // Server: ZK Web Server\r\n
+      // Pragma: no-cache\r\n
+      // Cache-control: no-cache\r\n
+      // Content-Type: text\/xml\r\n
+      // Connection: close\r\n\r\n\r\n\r\n
+      // 1<\/PIN>2017-02-08 11:37:35<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>\r\n
+      // 2<\/PIN>2017-02-08 13:11:17<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>\r\n
+      // 2<\/PIN>2017-02-08 13:11:19<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>\r\n
+      // 2<\/PIN>2017-02-08 13:11:21<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>\r\n
+      // 1<\/PIN>2017-02-06 16:21:23<\/DateTime>0<\/Verified>4<\/Status>0<\/WorkCode><\/Row>\r\n
+      // 1<\/PIN>2017-02-06 16:23:38<\/DateTime>0<\/Verified>2<\/Status>0<\/WorkCode><\/Row>\r\n
+      // 11065<\/PIN>2017-02-07 05:43:55<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>\r\n
+      // 11078<\/PIN>2017-02-07 06:12:07<\/DateTime>0<\/Verified>0<\/Status>0<\/WorkCode><\/Row>\r\n
+      // 11061<\/PIN>2017-02-07"
 
-      $data      = $this->_ParseData($buffer[$a], "<Row>", "</Row>");
-      $pin       = $this->_ParseData($data, "<PIN>", "</PIN>");
+      // $data      = $this->_ParseData($buffer[$a], "<Row>", "</Row>");
+      // $pin       = $this->_ParseData($data, "<PIN>", "</PIN>");
 
       $data = " ".$data;
       $hasil = "";

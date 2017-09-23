@@ -100,8 +100,6 @@ class UserDataController extends Controller
 
         UD::insert($create);
       }
-
-
       return redirect()->route('index');
     }
 }

@@ -54,7 +54,7 @@ class FPController extends Controller
     public function check_connection($id)
     {
       $mesin = FP::find($id);
-      $ip = $mesin->ip;
+      $IP = $mesin->ip;
       // $port = $mesin->port;
 
       $connect = @fsockopen($IP, '80', $errno, $errstr, 1);

@@ -34,6 +34,7 @@
               <th>IP Address</th>
               {{-- <th>Port</th> --}}
               <th>Comkey</th>
+              <th>Status</th>
               <th>Action</th>
             </tr>
            </thead>
@@ -44,7 +45,13 @@
                 <td>{{ $value->ip }}</td>
                 {{-- <td>{{ ($value->port) ? $value->port : '-' }}</td> --}}
                 <td>{{ $value->comkey }}</td>
+                <td>{{ ($value->status == 1) ? "Aktif" : "Tidak Aktif" }}</td>
                 <td>
+                  @if ($value->status == 1)
+                    <a href="{{ route('fingerprint_deactive', ['id' => $value->id]) }}" class="btn waves-effect waves-light red tooltipped" data-position="top" data-delay="50" data-tooltip="Non Aktifkan Mesin Fingerprint"><i class="material-icons">clear</i></a>
+                  @else
+                    <a href="{{ route('fingerprint_active', ['id' => $value->id]) }}" class="btn waves-effect waves-light green tooltipped" data-position="top" data-delay="50" data-tooltip="Aktifkan Mesin Fingerprint"><i class="material-icons">done</i></a>
+                  @endif
                   <a href="{{ route('fingerprint_check_connection', ['id' => $value->id]) }}" class="btn waves-effect waves-light blue tooltipped" data-position="top" data-delay="50" data-tooltip="Cek Koneksi"><i class="material-icons">wifi_tethering</i></a>
                   <a href="{{ route('fingerprint_edit', ['id' => $value->id]) }}" class="btn waves-effect waves-light cyan tooltipped" data-position="top" data-delay="50" data-tooltip="Ubah Mesin Fingerprint"><i class="material-icons">edit</i></a>
                   <a href="{{ route('fingerprint_delete', ['id' => $value->id]) }}" class="btn waves-effect waves-light red tooltipped" data-position="top" data-delay="50" data-tooltip="Hapus Mesin Fingerprint"><i class="material-icons">delete</i></a>

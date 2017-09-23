@@ -67,4 +67,20 @@ class FPController extends Controller
         return "Mesin tidak terkoneksi! <br> <a href='" . route('fingerprint_index') . "'>Kembali</a>";
       }
     }
+
+    public function active($id)
+    {
+      $mesin = FP::find($id);
+      $mesin->status = 1;
+      $mesin->save();
+      return redirect()->route('fingerprint_index');
+    }
+
+    public function deactive($id)
+    {
+      $mesin = FP::find($id);
+      $mesin->status = 0;
+      $mesin->save();
+      return redirect()->route('fingerprint_index');
+    }
 }

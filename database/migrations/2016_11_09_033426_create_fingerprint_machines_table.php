@@ -16,7 +16,7 @@ class CreateFingerprintMachinesTable extends Migration
         Schema::create('fingerprint_machines', function (Blueprint $table) {
             $table->increments('id');
             $table->string('ip');
-            $table->string('port')->nullable();
+            // $table->string('port')->nullable();
             $table->string('comkey');
             $table->timestamps();
         });

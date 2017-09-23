@@ -1,46 +1,65 @@
 @extends('welcome')
-@section('content')
 
-<div class="row row-main">
-  <div class="col s12 m12 l12">
-    <div class="card-panel">
-      <div class="row">
-        <div class="col s12 m4 l4">
-          <nav class="blue accent-2 nav-breadcrumb">
-            <div class="nav-wrapper">
-              <div class="col s12">
-                <a href="{{ url('books') }}" class="breadcrumb">Fingerprint</a>
-                <a href="{{ url('books/create') }}" class="breadcrumb">Tambah Mesin</a>
+@section('content')
+  <div class="row row-main">
+    <div class="col s12 m12 l12">
+      <div class="card-panel">
+        <div class="row">
+          <div class="col s12 m4 l4">
+            <nav class="cyan nav-breadcrumb">
+              <div class="nav-wrapper">
+                <div class="col s12 m12 l12">
+                  <a class="breadcrumb">Mesin Absensi</a>
+                </div>
+              </div>
+            </nav>
+          </div>
+          <div class="col s12 m8 l8">
+            <div class="row right">
+              <div class="col s12 m12 l12">
+                <a href="{{ route('fingerprint_create') }}" class="btn waves-effect waves-light cyan tooltipped" data-position="top" data-delay="50" data-tooltip="Sinkronisasi"><i class="material-icons">add_circle</i></a>
               </div>
             </div>
-          </nav>
+          </div>
         </div>
-      </div>
-      <div class="row margin-bottom">
-        <div class="col s12 m12 l12">
-          <h4>Tambah Mesin</h4>
+        <div class="row margin-bottom">
+          <div class="col s12 m12 l12">
+            <h4>Tabel Mesin Absensi</h4>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <form class="col s12" id="create_form" method="post" action="{{ url('setting/fingerprint') }}">
-          {!! csrf_field() !!}
-          <div class="row margin-bottom">
-            <div class="input-field col s12 m6 l6">
-              <input id="ip" type="text" name="machine_ip">
-              <label for="ip">IP Mesin</label>
-            </div>
-            <div class="input-field col s12 m6 l6">
-              <input id="tanggal_masuk" type="text" name="machine_com" class="datepicker">
-              <label for="tanggal_masuk">Com Key</label>
+        <table class="striped responsive-table">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>IP Address</th>
+              {{-- <th>Port</th> --}}
+              <th>Comkey</th>
+              <th>Action</th>
+            </tr>
+           </thead>
+          <tbody>
+            @foreach ($data as $key => $value)
+              <tr>
+                <td>{{ $key + 1 }}</td>
+                <td>{{ $value->ip }}</td>
+                {{-- <td>{{ ($value->port) ? $value->port : '-' }}</td> --}}
+                <td>{{ $value->comkey }}</td>
+                <td>
+                  <a href="{{ route('fingerprint_edit', ['id' => $value->id]) }}" class="btn waves-effect waves-light cyan tooltipped" data-position="top" data-delay="50" data-tooltip="Ubah Mesin Fingerprint"><i class="material-icons">edit</i></a>
+                  <a href="{{ route('fingerprint_delete', ['id' => $value->id]) }}" class="btn waves-effect waves-light red tooltipped" data-position="top" data-delay="50" data-tooltip="Hapus Mesin Fingerprint"><i class="material-icons">delete</i></a>
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+        <div class="row margin-bottom">
+          <div class="col s12 m12 l12">
+            <div class="right">
+              {{ $data->links() }}
             </div>
           </div>
-          <div class="row">
-            <a href="{{ url('books') }}" class="btn waves-effect waves-light red accent-2" id="cancel_create">Cancel</a>
-            <button class="btn waves-effect waves-light blue accent-2" id="btn_create">Save</button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 @endsection

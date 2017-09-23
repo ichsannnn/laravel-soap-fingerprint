@@ -15,8 +15,9 @@ class CreateUserDatasTable extends Migration
     {
         Schema::create('user_datas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nis');
-            $table->datetime('datetime_in');
+            $table->string('user_id');
+            $table->datetime('datetime');
+            $table->integer('machine_id');
             $table->timestamps();
         });
     }

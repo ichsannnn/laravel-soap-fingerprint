@@ -88,8 +88,7 @@ class UserDataController extends Controller
         $connect = @fsockopen($IP, '80', $errno, $errstr, 1);
         // $connect = @fsockopen($IP, $Port, $errno, $errstr, 1);
         if($connect) {
-          $soapRequest = "<GetAttLog><ArgComKey xsi:type=\"xsd:integer\">".
-                          $Key."</ArgComKey><Arg><PIN xsi:type=\"xsd:integer\">All</PIN></Arg></GetAttLog>";
+          $soapRequest = "<GetAttLog><ArgComKey xsi:type=\"xsd:integer\">".$Key."</ArgComKey><Arg><PIN xsi:type=\"xsd:integer\">All</PIN></Arg></GetAttLog>";
           $newLine = "\r\n";
           fputs($connect, "POST /iWsService HTTP/1.0".$newLine);
           fputs($connect, "Content-Type: text/xml".$newLine);

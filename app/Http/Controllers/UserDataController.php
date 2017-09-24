@@ -152,19 +152,19 @@ class UserDataController extends Controller
          foreach (array_chunk($create, 5) as $key => $chunk_value) {
           //  echo ($key + 1) . '. ';
            foreach ($chunk_value as $value) {
-             $absen = new UD;
-             $absen->user_id = $value["user_id"];
-             $absen->datetime = $value["datetime"];
-             $absen->machine_id = $value["machine_id"];
-             $absen->created_at = $value["created_at"];
-             $absen->save();
+             //$absen = new UD;
+             //$absen->user_id = $value["user_id"];
+             //$absen->datetime = $value["datetime"];
+             //$absen->machine_id = $value["machine_id"];
+             //$absen->created_at = $value["created_at"];
+             //$absen->save();
             //  echo $value["user_id"] . '<br>';
             // echo json_encode($value) . '<br>';
            }
           //  echo '<br>';
          }
         //  echo count($create) . '<br>';
-        // echo "bates per mesin";
+        // echo "bates per mesin<br><br>";
         // UD::insert($create);
 
       }
